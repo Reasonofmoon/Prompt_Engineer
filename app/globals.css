@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    --pastel-purple: #b39ddb;
+    --pastel-yellow: #fff59d;
+    --pastel-blue: #90caf9;
+    --pastel-green: #a5d6a7;
+    --pastel-red: #ef9a9a;
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    --pastel-purple: #7e57c2;
+    --pastel-yellow: #ffd54f;
+    --pastel-blue: #42a5f5;
+    --pastel-green: #66bb6a;
+    --pastel-red: #ef5350;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.text-pastel-purple {
+  color: var(--pastel-purple);
+}
+
+.text-pastel-yellow {
+  color: var(--pastel-yellow);
+}
+
+.text-pastel-blue {
+  color: var(--pastel-blue);
+}
+
+.text-pastel-green {
+  color: var(--pastel-green);
+}
+
+.text-pastel-red {
+  color: var(--pastel-red);
+}
+
+.bg-pastel-purple {
+  background-color: var(--pastel-purple);
+}
+
+.bg-pastel-yellow {
+  background-color: var(--pastel-yellow);
+}
+
+.bg-pastel-blue {
+  background-color: var(--pastel-blue);
+}
+
+.bg-pastel-green {
+  background-color: var(--pastel-green);
+}
+
+.bg-pastel-red {
+  background-color: var(--pastel-red);
+}
+
+.bg-pastel-purple\/20 {
+  background-color: color-mix(in srgb, var(--pastel-purple) 20%, transparent);
+}
+
+.bg-pastel-yellow\/20 {
+  background-color: color-mix(in srgb, var(--pastel-yellow) 20%, transparent);
+}
+
+.bg-pastel-blue\/20 {
+  background-color: color-mix(in srgb, var(--pastel-blue) 20%, transparent);
+}
+
+.bg-pastel-green\/20 {
+  background-color: color-mix(in srgb, var(--pastel-green) 20%, transparent);
+}
+
+.bg-pastel-red\/20 {
+  background-color: color-mix(in srgb, var(--pastel-red) 20%, transparent);
+}
+
+.tabs-list {
+  display: flex;
+  border-bottom: 1px solid hsl(var(--border));
+  margin-bottom: 1rem;
+}
+
+.tabs-trigger {
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.tabs-trigger[data-state="active"] {
+  border-bottom-color: hsl(var(--primary));
+  color: hsl(var(--primary));
+}
+
+.dark-transition {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card-hover {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.button-glow:hover {
+  box-shadow: 0 0 15px var(--pastel-purple);
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
