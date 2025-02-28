@@ -473,20 +473,40 @@ Please provide your detailed response following these guidelines, ensuring clari
         4. Improved format for examples (if any)
         5. Clearer purpose statement
         
-        Return the upgraded prompt as a full text, followed by a list of improvements made.
-        Format your response as a JSON object:
+        IMPORTANT: You MUST return ONLY a valid, parseable JSON object without any additional explanation, markdown formatting, or text outside the JSON. 
+        
+        The EXACT format to follow is:
         {
           "text": "your upgraded prompt text here",
           "improvements": ["improvement 1", "improvement 2", "improvement 3", "improvement 4", "improvement 5"]
         }
+        
+        Ensure the JSON is properly formatted with double quotes around property names and string values. Do not include any text before or after the JSON object.
       `;
       
       // Call Gemini API for upgrade
       const result = await generateWithGemini(upgradePrompt);
       
       try {
-        const upgradeData = JSON.parse(result);
-        setUpgradedPrompt(upgradeData);
+        // 응답 정리: JSON이 아닌 형식(마크다운, 설명 텍스트 등)을 제거하기 위한 작업
+        let cleanedResult = result.trim();
+        
+        // JSON 시작 부분과 끝 부분을 찾는다
+        const jsonStartIndex = cleanedResult.indexOf('{');
+        const jsonEndIndex = cleanedResult.lastIndexOf('}');
+        
+        if (jsonStartIndex !== -1 && jsonEndIndex !== -1 && jsonEndIndex > jsonStartIndex) {
+          // 유효한 JSON 부분만 추출
+          cleanedResult = cleanedResult.substring(jsonStartIndex, jsonEndIndex + 1);
+          
+          console.log("Cleaned JSON result:", cleanedResult);
+          const upgradeData = JSON.parse(cleanedResult);
+          setUpgradedPrompt(upgradeData);
+        } else {
+          // JSON 형식을 찾을 수 없는 경우
+          console.error("Failed to find valid JSON in API response:", cleanedResult);
+          throw new Error("API response does not contain valid JSON format");
+        }
       } catch (parseError) {
         console.error("Failed to parse Gemini API response:", parseError);
         console.log("Raw API response:", result);
