@@ -1,5 +1,5 @@
 const GEMINI_API_BASE_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent"
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent"
   
 // 환경 변수에서 API 키를 가져옵니다.
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || ""
@@ -30,7 +30,7 @@ export async function generateWithGemini(prompt: string): Promise<string> {
           },
         ],
         generationConfig: {
-          temperature: 0.7,
+          temperature: 0.1,
           topK: 40,
           topP: 0.95,
           maxOutputTokens: 2048,
@@ -58,4 +58,3 @@ export async function generateWithGemini(prompt: string): Promise<string> {
     throw error;
   }
 }
-
