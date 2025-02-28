@@ -60,4 +60,78 @@ MIT
 ## 참고사항
 
 - Gemini API 사용량에 따라 비용이 발생할 수 있으니 API 사용 정책을 확인하세요.
-- API 키를 공개 저장소에 업로드하지 마세요. 
+- API 키를 공개 저장소에 업로드하지 마세요.
+
+# Prompt Engineer
+
+프롬프트 엔지니어링을 위한 웹 어플리케이션으로, Gemini API를 활용하여 프롬프트를 최적화하고 평가할 수 있는 기능을 제공합니다.
+
+## 주요 기능
+
+- 프롬프트 에디터: 다양한 요소를 조합하여 프롬프트 작성
+- 평가 도구: Gemini API를 통한 프롬프트 품질 평가
+- 버전 관리: 작성한 프롬프트의 버전 저장 및 관리
+- 프롬프트 테스트: 실제 Gemini API를 통한 프롬프트 테스트
+- 분석 도구: 프롬프트의 강점과 약점 분석
+- 자동 개선: AI를 통한 프롬프트 자동 개선 제안
+
+## 설치 및 실행
+
+1. 저장소 클론
+   ```bash
+   git clone https://github.com/Reasonofmoon/Prompt_Engineer.git
+   cd Prompt_Engineer
+   ```
+
+2. 의존성 설치
+   ```bash
+   npm install
+   # 또는
+   yarn install
+   ```
+
+3. 환경 변수 설정
+   `.env.local` 파일을 생성하고 다음 내용을 추가합니다:
+   ```
+   NEXT_PUBLIC_GEMINI_API_KEY=여러분의_API_키
+   ```
+   Gemini API 키는 [Google AI Studio](https://ai.google.dev/)에서 발급받을 수 있습니다.
+
+4. 개발 서버 실행
+   ```bash
+   npm run dev
+   # 또는
+   yarn dev
+   ```
+
+5. 브라우저에서 `http://localhost:3000` 접속
+
+## Vercel에 배포하기
+
+### 1. 환경 변수 설정 (중요)
+
+Vercel에 배포할 때는 반드시 환경 변수를 올바르게 설정해야 합니다:
+
+1. Vercel 대시보드에서 프로젝트로 이동
+2. Settings > Environment Variables 메뉴 선택
+3. 새 환경 변수 추가:
+   - **NAME**: `NEXT_PUBLIC_GEMINI_API_KEY`
+   - **VALUE**: 여러분의 Gemini API 키 입력
+4. "Add" 버튼 클릭
+5. 프로젝트 재배포 (Deploy > Redeploy)
+
+![환경 변수 설정](https://i.imgur.com/example-image.png)
+
+### 2. API 오류 디버깅
+
+만약 "Failed to upgrade the prompt with Gemini API. Using fallback upgrade" 오류가 발생한다면:
+
+1. 브라우저 개발자 도구(F12)의 콘솔 탭에서 자세한 오류 메시지 확인
+2. 다음 사항 체크:
+   - Vercel에 환경 변수가 올바르게 설정되었는지 확인
+   - API 키가 유효한지 확인
+   - 너무 긴 프롬프트는 토큰 제한에 걸릴 수 있음 (간결하게 작성)
+
+## 라이선스
+
+MIT License 

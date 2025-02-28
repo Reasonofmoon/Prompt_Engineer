@@ -483,12 +483,20 @@ Please provide your detailed response following these guidelines, ensuring clari
       
       // Call Gemini API for upgrade
       const result = await generateWithGemini(upgradePrompt);
-      const upgradeData = JSON.parse(result);
       
-      setUpgradedPrompt(upgradeData);
-    } catch (error) {
+      try {
+        const upgradeData = JSON.parse(result);
+        setUpgradedPrompt(upgradeData);
+      } catch (parseError) {
+        console.error("Failed to parse Gemini API response:", parseError);
+        console.log("Raw API response:", result);
+        setError(`Failed to parse Gemini API response. Raw response: ${result.substring(0, 100)}...`);
+        // Continue to fallback
+        throw new Error("JSON parsing error");
+      }
+    } catch (error: any) {
       console.error("Failed to upgrade prompt:", error);
-      setError("Failed to upgrade the prompt with Gemini API. Using fallback upgrade.");
+      setError(`Failed to upgrade the prompt with Gemini API: ${error.message || 'Unknown error'}. Using fallback upgrade.`);
       
       // Fallback to mock upgraded prompt if API fails
       const fallbackUpgradedPrompt: UpgradedPrompt = {
